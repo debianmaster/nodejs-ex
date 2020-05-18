@@ -11,10 +11,9 @@ jobs:
         ports:
         - 6443:6443
         volumes:
-        - /tmp/output/:/output/
+        - /tmp/output/:/etc/rancher/k3s
     steps:
-    - name: Git checkout
-      uses: actions/checkout@v2
+    - run: docker ps
     - run: sleep 10
     - run: cat /tmp/output/k3s.yaml
     - run: docker ps
