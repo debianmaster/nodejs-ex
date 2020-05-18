@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        k3s-version: [0.9.1, 1.0.0]
+        k3s-version: [0.9.1]
 
     steps:
     - name: Git checkout
