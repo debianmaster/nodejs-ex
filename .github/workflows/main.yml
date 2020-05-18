@@ -1,23 +1,21 @@
-# This is a basic workflow to help you get started with Actions
+name: Run tests
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '10', '12' ]
-    name: Node ${{ matrix.node }} sample
+        k3s-version: [0.9.1, 1.0.0]
+
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm test
+    - name: Git checkout
+      uses: actions/checkout@v2
+
+    - name: Start k3s
+      uses: debianmaster/k3s-github-action@0.0.1
+      with:
+        k3s-version: ${{ matrix.k3s-version }}
+
+    - run: kubectl get nodes
