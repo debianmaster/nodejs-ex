@@ -18,4 +18,4 @@ jobs:
       with:
         k3s-version: ${{ matrix.k3s-version }}
 
-    - run: kubectl get nodes
+    - run: KUBECONFIG=/tmps/kubeconfig.yaml kubectl get nodes
