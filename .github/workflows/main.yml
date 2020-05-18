@@ -13,9 +13,20 @@ jobs:
         volumes:
         - /tmp/output:/output
         options: --privileged	
+      k3s-091:
+        image: debianmaster/k3s
+        ports:
+        - 7443:6443
+        volumes:
+        - /tmp/k3s-091:/output
+        options: --privileged	
     steps:
     - run: |
         sleep 10
         export KUBECONFIG=/tmp/output/kubeconfig.yaml
+        kubectl get nodes
+        kubectl get po -A
+        
+        export KUBECONFIG=/tmp/k3s-091/kubeconfig.yaml
         kubectl get nodes
         kubectl get po -A
