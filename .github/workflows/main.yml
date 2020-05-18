@@ -10,9 +10,11 @@ jobs:
         image: debianmaster/k3s
         ports:
         - 6443:6443
-
+        volumes:
+        - /tmp/output:/output
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-      
+    - run: cat /tmp/output
+    - run: KUBECONFIG=/tmp/output kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
