@@ -6,11 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
-      redis:
+      k3s:
         image: rancher/k3s:latest
         ports:
         - 6443:6443
-        options: server
+        options: --command server
         env:
           K3S_TOKEN: "mytoken"
           K3S_KUBECONFIG_OUTPUT: "/output/kubeconfig.yaml"
