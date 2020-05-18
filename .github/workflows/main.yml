@@ -11,7 +11,7 @@ jobs:
         ports:
         - 6443:6443
         volumes:
-        - /tmp/output:/etc/rancher/k3s
+        - /tmp/output:/output
         options: --privileged	
     steps:
     - run: docker ps
