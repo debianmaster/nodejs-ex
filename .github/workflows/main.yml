@@ -15,6 +15,6 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-    - run: ls -lrt
-    - run: KUBECONFIG=/tmp/output kubectl get nodes
+    - run: ls -lrt /tmp
+    - run: KUBECONFIG=/tmp/kubeconfig.yaml kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
