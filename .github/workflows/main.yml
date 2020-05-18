@@ -15,6 +15,7 @@ jobs:
         options: --privileged	
     steps:
     - run: |
+        sleep 10
         export KUBECONFIG=/tmp/output/kubeconfig.yaml
         kubectl get nodes
         kubectl get po -A
