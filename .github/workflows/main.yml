@@ -17,6 +17,7 @@ jobs:
     - run: docker ps
     - run: sleep 10
     - run: docker ps
+    - run: ls -lrt /tmp/output
     - run: cat /tmp/output/k3s.yaml
     - run: docker ps
     - run: KUBECONFIG=/tmp/output/k3s.yaml kubectl get nodes
