@@ -26,7 +26,7 @@ jobs:
         export KUBECONFIG=/tmp/output/kubeconfig.yaml
         kubectl get nodes
         kubectl get po -A
-        
+        sleep 10
         export KUBECONFIG=/tmp/k3s-091/kubeconfig.yaml
         kubectl get nodes
         kubectl get po -A
