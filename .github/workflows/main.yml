@@ -10,11 +10,11 @@ jobs:
         image: debianmaster/k3s
         ports:
         - 6443:6443
-        volumes:
-        - /tmp:/etc/rancher/k3s
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
+    - run: docker ps
+    - run: docker cp k3s:/etc/rancher/k3s /tmp/k3s.yaml
     - run: ls -lrt /tmp
     - run: KUBECONFIG=/tmp/k3s.yaml kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
