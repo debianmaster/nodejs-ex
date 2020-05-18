@@ -12,6 +12,7 @@ jobs:
         - 6443:6443
         volumes:
         - /tmp/output:/etc/rancher/k3s
+        options: --privileged	
     steps:
     - run: docker ps
     - run: sleep 10
