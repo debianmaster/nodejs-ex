@@ -11,10 +11,10 @@ jobs:
         ports:
         - 6443:6443
         volumes:
-        - .:/output
+        - /tmp:/output
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
     - run: ls -lrt
-    - run: KUBECONFIG=./output kubectl get nodes
+    - run: KUBECONFIG=/tmp/output kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
