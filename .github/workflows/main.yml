@@ -7,15 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     services:
       k3s:
-        image: rancher/k3s:latest
+        image: debianmaster/k3s
         ports:
         - 6443:6443
-        env:
-          K3S_TOKEN: "mytoken"
-          K3S_KUBECONFIG_OUTPUT: "/output/kubeconfig.yaml"
-          K3S_KUBECONFIG_MODE: "666"
-          INSTALL_K3S_EXEC: "server"
-          K3S_CLUSTER_INIT: true
 
     steps:
     - name: Git checkout
