@@ -11,10 +11,10 @@ jobs:
         ports:
         - 6443:6443
         volumes:
-        - /tmp:/output
+        - /tmp:/etc/rancher/k3s
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
     - run: ls -lrt /tmp
-    - run: KUBECONFIG=/tmp/kubeconfig.yaml kubectl get nodes
+    - run: KUBECONFIG=/tmp/k3s.yaml kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
