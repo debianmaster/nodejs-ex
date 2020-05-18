@@ -14,11 +14,7 @@ jobs:
         - /tmp/output:/output
         options: --privileged	
     steps:
-    - run: docker ps
-    - run: sleep 10
-    - run: docker ps
-    - run: ls -lrt /tmp/output
-    - run: cat /tmp/output/kubeconfig.yaml
-    - run: docker ps
-    - run: KUBECONFIG=/tmp/output/kubeconfig.yaml kubectl get nodes
-    - run: curl -k https://localhost:6443/healthz
+    - run: export KUBECONFIG=/tmp/output/kubeconfig.yaml
+    - run: |
+        kubectl get nodes
+        kubectl get po -A
