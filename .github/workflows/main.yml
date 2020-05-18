@@ -11,10 +11,11 @@ jobs:
         ports:
         - 6443:6443
         volumes:
-        - /tmp/output/:/etc/rancher/k3s
+        - /tmp/output:/etc/rancher/k3s
     steps:
     - run: docker ps
     - run: sleep 10
+    - run: docker ps
     - run: cat /tmp/output/k3s.yaml
     - run: docker ps
     - run: KUBECONFIG=/tmp/output/k3s.yaml kubectl get nodes
