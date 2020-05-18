@@ -10,7 +10,7 @@ jobs:
         image: rancher/k3s:latest
         ports:
         - 6443:6443
-        options: --command server
+        options: --entrypoint k3s server
         env:
           K3S_TOKEN: "mytoken"
           K3S_KUBECONFIG_OUTPUT: "/output/kubeconfig.yaml"
