@@ -10,12 +10,11 @@ jobs:
         image: rancher/k3s:latest
         ports:
         - 6443:6443
-        options: >-
-          k3s server --token=mytoken
         env:
           K3S_TOKEN: "mytoken"
           K3S_KUBECONFIG_OUTPUT: "/output/kubeconfig.yaml"
           K3S_KUBECONFIG_MODE: "666"
+          INSTALL_K3S_EXEC: "server"
 
     steps:
     - name: Git checkout
