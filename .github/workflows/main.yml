@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Start k3s
-      uses: debianmaster/k3s-github-action@0.0.2
+      uses: debianmaster/k3s-github-action@0.1.2
       with:
         k3s-version: ${{ matrix.k3s-version }}
 
