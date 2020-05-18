@@ -16,7 +16,7 @@ jobs:
     - name: Git checkout
       uses: actions/checkout@v2
     - run: sleep 10
-    - run: cat /tmp/output
+    - run: cat /tmp/output/k3s.yaml
     - run: docker ps
     - run: KUBECONFIG=/tmp/output/k3s.yaml kubectl get nodes
     - run: curl -k https://localhost:6443/healthz
