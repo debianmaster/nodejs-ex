@@ -15,11 +15,10 @@ jobs:
           K3S_KUBECONFIG_OUTPUT: "/output/kubeconfig.yaml"
           K3S_KUBECONFIG_MODE: "666"
           INSTALL_K3S_EXEC: "server"
+          K3S_CLUSTER_INIT: true
 
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
       
-    - run: kubectl get po -A
-      env:
-        KUBECONFIG: "/output/kubeconfig.yaml"
+    - run: curl -k https://localhost:6443/healthz
