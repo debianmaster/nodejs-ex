@@ -1,44 +1,34 @@
-name: Run tests
-
-on: [push]
-
+name: Auto Merge
+on:
+  pull_request:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+  status: {}
 jobs:
-  build:
+  automerge:
     runs-on: ubuntu-latest
-    # services:
-    #   k3s:
-    #     image: debianmaster/k3s
-    #     ports:
-    #     - 6443:6443
-    #     volumes:
-    #     - /tmp/output:/output
-    #     options: --privileged	
-    #   k3s-091:
-    #     image: debianmaster/k3s
-    #     ports:
-    #     - 7443:6443
-    #     volumes:
-    #     - /tmp/k3s-091:/output
-    #     options: --privileged	
     steps:
-      
-    - name: deploy to cluster
-      uses: debianmaster/kubectl@master
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: |
-          export KUBECONFIG=/tmp/output/kubeconfig.yaml
-          kubectl kuttl -h
-          kubectl get nodes
-    - name: test2
-      run: |
-        kubectl krew update
-        sleep 20
-        export KUBECONFIG=/tmp/output/kubeconfig.yaml
-        kubectl get nodes
-
-        sleep 20
-        export KUBECONFIG=/tmp/k3s-091/kubeconfig.yaml
-        kubectl get nodes
-
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+        with:
+          ignoreActions: automerge
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: 'Merge'
+        uses: "pascalgn/automerge-action@v0.4.0"
+        if: steps.waitforstatuschecks.outputs.status == 'success'
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          LABELS: automerge
