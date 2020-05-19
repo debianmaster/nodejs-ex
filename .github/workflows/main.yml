@@ -22,6 +22,7 @@ jobs:
         options: --privileged	
     steps:
     - run: |
+        kubectl krew update
         sleep 20
         export KUBECONFIG=/tmp/output/kubeconfig.yaml
         kubectl get nodes
