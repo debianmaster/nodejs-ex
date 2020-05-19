@@ -26,10 +26,11 @@ jobs:
       uses: debianmaster/kubectl@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with: |
-        export KUBECONFIG=/tmp/output/kubeconfig.yaml
-        kubectl kuttle -h
-        kubectl get nodes
+      with:
+        args: |
+          export KUBECONFIG=/tmp/output/kubeconfig.yaml
+          kubectl kuttle -h
+          kubectl get nodes
     - name: test2
       run: |
         kubectl krew update
