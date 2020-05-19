@@ -21,7 +21,17 @@ jobs:
         - /tmp/k3s-091:/output
         options: --privileged	
     steps:
-    - run: |
+      
+    - name: deploy to cluster
+      uses: debianmaster/kubectl@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with: |
+        export KUBECONFIG=/tmp/output/kubeconfig.yaml
+        kubectl kuttle -h
+        kubectl get nodes
+    - name: test2
+      run: |
         kubectl krew update
         sleep 20
         export KUBECONFIG=/tmp/output/kubeconfig.yaml
