@@ -4,3 +4,5 @@ node('nodejs') {
   stage 'deploy'
   openshiftDeploy(deploymentConfig: 'nodejs-ex')
 }
+
+
