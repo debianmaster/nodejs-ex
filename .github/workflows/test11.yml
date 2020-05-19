@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install doctl
-      uses: debianmaster/action-kubectl@master
+      uses: debianmaster/action-kubectl@0.0.1
       with:
         token: test
