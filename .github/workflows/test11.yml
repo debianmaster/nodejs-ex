@@ -12,3 +12,13 @@ jobs:
     - name: Install doctl
       run: |
         echo ${{ matrix.k8s_version }}
+        K3S_TOKEN=mytoken
+        K3S_KUBECONFIG_OUTPUT=/output/kubeconfig-${{ matrix.k8s_version }}.yaml
+        K3S_KUBECONFIG_MODE=666
+        docker run -d --privileged 6443:6443 rancher/k3s:${{ matrix.k8s_version }}
+        docker ps
+        ls /output/
+        sleep 10
+        ls /output/
+        
+        
