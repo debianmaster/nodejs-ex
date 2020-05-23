@@ -20,5 +20,5 @@ jobs:
         version: 'v0.9.1'
     - run: |
         docker ps -a
-        echo ${{ steps.k3s.outputs.kubeconfig }}"
+        echo ${{ steps.k3s.outputs.kubeconfig }}
         
