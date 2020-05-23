@@ -11,15 +11,13 @@ jobs:
     steps:
     - name: Install doctl
       run: |
-        echo ${{ matrix.k8s_version }}
         echo "K3S_TOKEN=mytoken" > .env
         echo "K3S_KUBECONFIG_OUTPUT=/output/kubeconfig-${{ matrix.k8s_version }}.yaml" >> .env
         echo "K3S_KUBECONFIG_MODE=666" >> .env 
         cat .env
         
-        docker run -d --privileged --env-file .env -v /tmp/output:/output -p 6443:6443 rancher/k3s:${{ matrix.k8s_version }}
-        docker ps
-        sleep 20
+        docker run -d --privileged --name	k3s-${{ matrix.k8s_version }} --env-file .env -v /tmp/output:/output -p 6443:6443 rancher/k3s:${{ matrix.k8s_version }} server 
+        sleep 30
         ls -lrt /tmp/output/
         
         export KUBECONFIG=/tmp/output/kubeconfig-${{ matrix.k8s_version }}.yaml
