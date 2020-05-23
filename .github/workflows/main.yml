@@ -10,7 +10,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/hello-world-javascript-action@master
+    - uses: debianmaster/actions-k3s
       id: k3s
       with:
         version: 'v0.9.1'
