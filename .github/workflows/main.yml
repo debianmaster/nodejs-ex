@@ -14,7 +14,9 @@ jobs:
 
 
     steps:
-
     - uses: debianmaster/hello-world-javascript-action@master
       with:
         version: 'v0.9.1'
+    - run: |
+        docker ps
+        
