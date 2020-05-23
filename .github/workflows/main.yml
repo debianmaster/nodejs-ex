@@ -10,6 +10,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+
     steps:
     - uses: debianmaster/hello-world-javascript-action@master
       id: k3s
@@ -18,4 +19,5 @@ jobs:
     - run: |
         docker ps
         echo ${{ steps.k3s.outputs.kubeconfig }}
+        echo ${{ env.envVar }}
         
