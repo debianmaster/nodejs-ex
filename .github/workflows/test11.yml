@@ -18,7 +18,7 @@ jobs:
         docker run -d --privileged -v /tmp/output:/output -p 6443:6443 rancher/k3s:${{ matrix.k8s_version }}
         docker ps
         sleep 20
-        ls /output/
+        ls /tmp/output/
         export KUBECONFIG=/tmp/output/kubeconfig-${{ matrix.k8s_version }}.yaml
         kubectl get nodes
         kubectl get po -A
