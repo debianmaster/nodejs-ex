@@ -19,5 +19,5 @@ jobs:
     - run: |
         docker ps
         echo ${{ steps.k3s.outputs.kubeconfig }}
-        echo ${{ env.envVar }}
+        kubectl get nodes
         
