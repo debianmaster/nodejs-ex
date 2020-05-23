@@ -20,13 +20,10 @@ jobs:
         cat .env
         
         docker run -d --privileged --name	k3s-${K3S_VERSION} --env-file .env -v /tmp/output:/output -p 6443:6443 rancher/k3s:${K3S_VERSION} server 
+        docker ps
+        cat .env
         
-        until [ -f "$KUBECONFIG" ]
-        do
-             sleep 2
-             ls -lrt /tmp/output
-             echo "waiting for kubeconfig file.."
-        done
+
         
         kubectl get nodes
         kubectl get po -A
