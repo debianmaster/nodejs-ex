@@ -16,7 +16,5 @@ jobs:
       with:
         version: 'v0.9.1'
     - run: |
-        docker ps
-        echo ${{ steps.k3s.outputs.kubeconfig }}
         kubectl get nodes
         
