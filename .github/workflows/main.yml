@@ -15,8 +15,10 @@ jobs:
 
     steps:
     - uses: debianmaster/hello-world-javascript-action@master
+      id: k3s
       with:
         version: 'v0.9.1'
     - run: |
         docker ps -a
+        echo ${{ steps.k3s.outputs.kubeconfig }}"
         
