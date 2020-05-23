@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        k8s_version: [v0.9.1,v1.0]
+        k8s_version: [v0.9.1]
     steps:
     - name: Install doctl
       run: |
