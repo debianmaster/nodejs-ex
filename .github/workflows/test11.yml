@@ -20,18 +20,12 @@ jobs:
         cat .env
         
         docker run -d --privileged --name	k3s-${K3S_VERSION} --env-file .env -v /tmp/output:/output -p 6443:6443 rancher/k3s:${K3S_VERSION} server 
-        wait_file() {
-          local file="$1"; shift
-          local wait_seconds="${1:-10}"; shift # 10 seconds as default timeout
-
-          until test $((wait_seconds--)) -eq 0 -o -f "$file" ; do sleep 1; done
-
-          ((++wait_seconds))
-        }
-        wait_file "$KUBECONFIG" 15 || {
-          echo "file missing after waiting for $? seconds: '$server_log'"
-          exit 1
-        }      
+        
+        until [ -f $KUBECONFIG ]
+        do
+             sleep 2
+             echo "waiting..."
+        done
         
         kubectl get nodes
         kubectl get po -A
