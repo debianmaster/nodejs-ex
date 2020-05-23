@@ -9,7 +9,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: debianmaster/hello-world-javascript-action@master
       id: k3s
@@ -17,4 +16,9 @@ jobs:
         version: 'v0.9.1'
     - run: |
         kubectl get nodes
+        kubectl get pods -A
+        sleep 10
+        kubectl get pods -A
+        
+        
         
