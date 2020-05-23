@@ -24,6 +24,7 @@ jobs:
         until [ -f "$KUBECONFIG" ]
         do
              sleep 2
+             ls -lrt /tmp/output
              echo "waiting for kubeconfig file.."
         done
         
