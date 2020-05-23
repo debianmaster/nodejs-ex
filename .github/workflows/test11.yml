@@ -5,8 +5,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s_version: [0.9.1,1.0]
     steps:
     - name: Install doctl
-      uses: debianmaster/action-kubectl@0.0.1
-      with:
-        token: test
+      run: |
+        echo ${{ matrix.k8s_version }}
