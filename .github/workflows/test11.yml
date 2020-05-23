@@ -29,9 +29,9 @@ jobs:
              ls -lrt /tmp/output
              echo "waiting for kubeconfig file.."
         done
-
+        sleep 2
         
-        kubectl get nodes
+        KUBECONFIG=/tmp/output/kubeconfig-${{ matrix.k8s_version }}.yaml kubectl get nodes
         kubectl get po -A
         
         
